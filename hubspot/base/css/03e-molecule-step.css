@@ -1,0 +1,92 @@
+/*========================================================================================
+
+03e.00      LAYOUT FRAMEWORK        MOLECULES        STEPS                    
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+03e.01      LAYOUT FRAMEWORK        MOLECULES       STEPS        STRUCTURE      
+
+-------------------------------------------------------------------------------------*/
+
+.container--step { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .container--step { 
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("flex-start") }}
+            {{ flexboxJustify("center") }}
+        }
+    }
+    
+.step__count { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .step__count { 
+            
+        }    
+    }
+
+.step__details { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .step__details { 
+            padding-left: 2.75em /*44px*/;
+            flex: 0 1 auto;
+        }    
+    }
+    
+    
+/*-------------------------------------------------------------------------------------
+
+03e.02      LAYOUT FRAMEWORK        MOLECULES       STEPS        TEXT   
+
+-------------------------------------------------------------------------------------*/
+
+.step__title { 
+    color: {{ colorCore5 }};
+    font-family: {{ textFontAccent }};
+    font-size: 1.25em /*20px*/;
+    font-weight: 600;
+    margin-top: 0.7em /*14px*/;
+    text-transform: uppercase;
+    text-align: center;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .step__title { 
+            font-size: 2.25em /*36px*/;    
+            margin-top: 0.556em /*20px*/;
+            text-align: left;
+        }
+    }
+
+.step__subtitle { 
+    line-height: 1.3;
+    margin: 0.5em auto 0;
+    max-width: 20em;
+    text-align: center;
+    width: 90%;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .step__subtitle { 
+            font-size: 1.125em /*18px*/;   
+            margin: 0;
+            max-width: none;
+            padding-top: 1.111em /*20px*/;
+            text-align: left;
+            width: 100%;
+        }
+    }
+    

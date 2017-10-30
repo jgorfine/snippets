@@ -1,0 +1,33 @@
+/*========================================================================================
+
+01b.00      BASE        BRAND COLORS
+
+========================================================================================*/
+
+
+/*-------------------------------------------------------------
+
+01b.00      BASE        BRAND COLORS       CORE
+
+We will have to phase these out as we start implementing the styles from the new style guide
+
+-------------------------------------------------------------*/
+
+{% set colorCore1 = "{{ site_settings.color_picker_favorite_1 }}" %}
+
+{% set colorCore2 = "{{ site_settings.color_picker_favorite_2 }}" %}
+
+{% set colorCore3 = "{{ site_settings.color_picker_favorite_3 }}" %}
+
+{% set colorCore4 = "{{ site_settings.color_picker_favorite_4 }}" %}
+
+
+/*-------------------------------------------------------------
+
+01b.02      BASE        BRAND COLORS       ACCENT
+
+-------------------------------------------------------------*/
+
+{% set colorAccent1 = "{{ site_settings.color_picker_favorite_5 }}" %}
+
+{% set colorAccent2 = "{{ site_settings.color_picker_favorite_6 }}" %}

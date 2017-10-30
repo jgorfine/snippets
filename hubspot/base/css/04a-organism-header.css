@@ -1,0 +1,398 @@
+/*========================================================================================
+
+04a.00      LAYOUT FRAMEWORK        ORGANISMS        HEADER        
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+04a.01      LAYOUT FRAMEWORK        ORGANISMS        HEADER        BASE
+
+-------------------------------------------------------------------------------------*/
+
+.hero {    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: {{ mastheadSizeMobile }};
+    text-align: center;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) {  
+        .hero { 
+            padding-top: {{ mastheadSizeDesktop }};    
+        }
+    }
+
+.hero .container--gutters { 
+    /*max-width: 56em;*/
+    padding: 4em 0;    
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) {  
+        .hero .container--gutters { 
+            padding: 8em 0;   
+        }
+    }
+    /*@media only screen and (min-width: {{ breakpointDesktop }}) {  
+        .hero .container--gutters { 
+            padding: 11em 0;   
+        }
+    }*/
+    
+.header__title { 
+    font-family: {{ textFontAccent }};
+    font-size: 2.75em /*2em*/;
+    font-weight: 500;
+}   
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .header__title { 
+            font-size: 3em /*48px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .header__title { 
+            font-size: 4em /*4.25vw*/ /*4em ~ 64px*/;
+        }
+    }
+    
+.header__subtitle { 
+    font-family: {{ textFontAccent }};
+    font-size: 1.125em /*18px*/;
+    font-weight: 400;
+    line-height: 1.3 /*1.1*/;
+}   
+.header__title + .header__subtitle { 
+    margin-top: 1.3em;    
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .header__subtitle { 
+            font-size: 1.25em /*20px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .header__subtitle { 
+            font-size: 1.5em /*24px*/;
+        }
+    }
+
+.hero .button--cta { 
+    font-size: 1em;   
+    margin-top: 2.5em;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04a.02      LAYOUT FRAMEWORK        ORGANISMS        HEADER      WITHOUT LEAD FORM
+
+-------------------------------------------------------------------------------------*/
+    
+.container--header--without-form .hero {    
+    background-color: #f5f5f5;
+    color: {{ colorCore1 }};
+}
+
+.container--header--without-form .header__title { 
+    color: {{ colorCore4 }};
+}   
+
+    
+/*-------------------------------------------------------------------------------------
+
+04a.03      LAYOUT FRAMEWORK        ORGANISMS        HEADER      WITH LEAD FORM
+
+-------------------------------------------------------------------------------------*/
+
+{% set formMaxWidthDesktop = "23.500em" %}
+
+.container--header--with-form .hero { 
+    background-color: {{ colorCore1 }};
+    color: #fff;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) {  
+        .container--header--with-form .hero { 
+            height: 51em;
+            text-align: left;  
+        }
+        .container--header--with-form.no-longer-has-form .hero { 
+            height: auto;
+            text-align: center;    
+        }
+    } 
+    
+.container--header--with-form .hero .container--gutters { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) {  
+        .container--header--with-form .hero .container--gutters { 
+            height: 100%;
+            max-width: 80em;
+            padding-bottom: 0;
+            padding-right: {{ formMaxWidthDesktop }};  
+            padding-top: 0;
+        }
+        .container--header--with-form.no-longer-has-form .hero .container--gutters { 
+            height: auto;
+            max-width: 56em;
+            padding-right: 0;  
+            padding-bottom: 14.25em;
+            padding-top: 14.25em;
+        }
+    } 
+
+.container--header--with-form .header__blurb { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .container--header--with-form .header__blurb { 
+            margin-bottom: 0;
+            padding-right: 2em;
+            position: relative;
+            top: 50%;
+            {{ transform("translateY(-50%)") }}
+        }
+        .container--header--with-form.no-longer-has-form .header__blurb { 
+            padding-right: 0;
+            position: static;
+            top: 0;
+            {{ transform("translateY(0)") }}
+        }
+    }
+
+.container--header--with-form .hero .button--cta { 
+    display: inline-block;    
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .container--header--with-form .hero .button--cta { 
+            display: none;    
+        }
+    }
+
+
+/*-------------------------------------------------------------------------------------
+
+04a.04      LAYOUT FRAMEWORK        ORGANISMS        HEADER      LEAD FORM STRUCTURE
+
+-------------------------------------------------------------------------------------*/
+
+.section--consultation {    
+    background-color: {{ colorCore3 }};
+    color: {{ colorCore1 }};
+    {{ transition("max-height 2s ease") }}
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+}
+.section.section--consultation { 
+    padding: 0;  
+}
+.section--consultation.is-appearing { 
+    max-height: 55em;
+}
+.section--consultation.is-ready { 
+    overflow: visible;    
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--consultation {    
+            background-color: transparent;
+            left: 0;
+            margin: auto;
+            max-width: 80em;
+            opacity: 0;
+            overflow: visible;
+            padding: 8em 0;
+            pointer-events: none;
+            right: 0;
+            top: 0;
+            width: 92%;
+            {{ transition("opacity 0.4s ease-in") }}
+        }
+        .section--consultation.is-appearing { 
+            opacity: 1;
+        }
+        .section.section--consultation { 
+            padding: {{ mastheadSizeDesktop }} 0 0;
+            position: absolute;
+        }
+    }
+
+.section--consultation .container--submission { 
+    padding: 2.5em 0;
+    width: 92%;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--consultation .container--submission {    
+            /*padding: 2.5em 0;*/
+            max-width: none;
+            width: 100%;    
+        }
+    }
+    
+.section--consultation .container--form { 
+    background: #fff;   
+    {{ borderRadius("0.375em") }}
+    border-color: #979797;
+    border-style: solid;
+    border-width: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+    padding: 1.125em 0.75em;
+    text-align: center;
+    {{ transition("opacity 0.4s ease-in") }}
+    z-index: 10;
+}
+.section--consultation .container--form.has-been-submitted { 
+    background: transparent;
+    border-color: transparent;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--consultation .container--form {    
+            margin-right: 0;
+            max-width: {{ formMaxWidthDesktop }};
+            pointer-events: auto;
+        }
+    }
+
+.section--consultation .form__title { 
+    color: {{ colorCore5 }};
+    font-family: {{ textFontAccent }};
+    font-size: 1.625em /*26px*/;
+    font-weight: 400;
+    line-height: 1.2;
+}
+.section--consultation .container--form.has-been-submitted .form__title { 
+    display: none;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--consultation .form__title { 
+            font-size: 2.25em /*36px*/;
+        }
+    } 
+
+.section--consultation .form__subtitle { 
+    font-size: 1em;
+    line-height: 1.3;
+    margin-top: 1em;
+}
+.section--consultation .container--form.has-been-submitted .form__subtitle { 
+    display: none;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--consultation .form__subtitle { 
+            font-size: 1.125em;
+        }
+    } 
+
+.section--consultation .hs-form { 
+    /*opacity: 0;*/
+    padding-top: 1.125em;
+    /*{{ transition("opacity 0.4s ease-in") }}*/
+}
+/*.section--consultation .container--form.is-ready .hs-form { 
+    opacity: 1;
+}*/
+
+.section--consultation .field { 
+    padding: 0 2.313em /*2em*/;
+    text-align: left;
+}
+
+.section--consultation .field + .field { 
+    margin-top: 0.75em;    
+}
+
+.section--consultation label { 
+    font-size: 0.75em;
+    line-height: 1;
+}
+
+.section--consultation .hs-form-required { 
+   color: {{ colorAccent4 }}; 
+   padding-left: 0.167em /*2px*/;
+}
+
+.section--consultation .input { 
+    margin-top: 0.188em /*3px*/;    
+}
+
+.section--consultation .hs-error-msgs { 
+    color: {{ colorError }};
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.section--consultation .hs-error-msgs li { 
+    display: table;
+    margin-top: 0.188em /*3px*/;
+}
+
+.section--consultation .hs-error-msgs li:before { 
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAJFBMVEUAAADABxLACRG/CxXACBLABxLACBLACBHACBLCBxLCCxO/BxGx93RwAAAAC3RSTlMA85YY49nHv4JHLX25UXwAAACiSURBVCjPYwADTvVA0aIJDHBgJL0bCDYqw/gcQD5YpAHCZ87eDQXbDMACS3bDgRdYgTdCYAtICdtuJJAAFOhGFtgB1AGxgoEBYpEBA9NuZIHdCgyMqAICDLNRBXYyaKMKbGKoRhXYzhCNKrCVQRpVYCNEAAE2QrQgwFaIoQiwHWItAmzCcBiG0zE8h+F99ADCCEKMQEaPBoyIwoxKzMjGSA4AjJsJBijZM0MAAAAASUVORK5CYII=");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: table-cell;
+    height: 1em;
+    content: "";
+    vertical-align: middle;
+    width: 1em;
+}
+
+.section--consultation .hs-error-msgs label { 
+    display: table-cell;
+    font-size: 0.75em;
+    line-height: 1.1;
+    padding-left: 0.5em;
+    vertical-align: middle;
+}
+
+.section--consultation .hs_submit { 
+    margin-top: 1.875em;
+    text-align: center;
+}
+
+.section--consultation .hs-button { 
+    background-color: {{ colorAccent4 }};
+    font-size: 1em;    
+}
+.section--consultation .hs-button:hover, 
+.section--consultation .hs-button:focus { 
+    background-color: {{ colorAccent4Hover }};    
+}
+.section--consultation .hs-button:focus { 
+    border-color: {{ colorAccent4 }};    
+}
+.section--consultation .hs-button:active { 
+    background-color: {{ colorAccent4Multiply }};
+}
+
+.consultation-form__disclaimer { 
+    display: block;
+    font-size: 0.625em /*10px*/;  
+    margin-top: 3.4em;
+}
+.section--consultation .container--form.has-been-submitted .consultation-form__disclaimer { 
+    display: none;
+}
+
+.consultation-form__disclaimer .link--text { 
+    text-decoration: none;
+}
+
+.container--header--with-form + main .section:first-child { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .container--header--with-form + main .section:first-child { 
+            padding-top: 3.5em;   
+        }
+    }

@@ -1,0 +1,103 @@
+/*========================================================================================
+
+04c.00      LAYOUT FRAMEWORK        ORGANISMS        TABS        { ALPHABETICAL }        
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+04c.01      LAYOUT FRAMEWORK        ORGANISMS        TABS           NAVIGATION
+
+-------------------------------------------------------------------------------------*/
+
+.tabs__nav { 
+    border-bottom-width: 0.063em /*1px*/;
+    border-color: #979797;
+    border-style: solid;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    {{ flexboxAlign("flex-end") }}
+    {{ flexboxJustify("space-between") }}
+    margin-bottom: 4.5em /*72px*/;
+}
+
+.tabs__nav__anchor { 
+    border-bottom-width: 0.139em /*5px*/;
+    border-color: transparent;
+    border-style: solid;
+    color: {{ colorCore3 }};
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    font-family: {{ textFontAccent }};
+    font-size: 1.125em /*18px*/;
+    text-align: center;
+    {{ transition("border-color 0.2s ease-in-out") }}
+}
+.tabs__nav__anchor.is-current { 
+    border-color: {{ colorAccent4 }};
+    color: {{ colorAccent4 }};    
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .tabs__nav__anchor { 
+            font-size: 1.25em /*20px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .tabs__nav__anchor { 
+            font-size: 1.5em /*24px*/;
+        }    
+    }
+
+.tabs__nav__anchor .link--text { 
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    padding-bottom: 0.778em /*28px*/;
+    text-decoration: none;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04c.02      LAYOUT FRAMEWORK        ORGANISMS        TABS           STRUCTURE
+
+-------------------------------------------------------------------------------------*/
+
+.tab { 
+    display: block;
+    /*opacity: 1;*/
+    pointer-events: auto;
+    /*{{ transition("opacity 0.4s ease-in-out") }}*/    
+}
+.tab--is-inactive { 
+    display: none;
+    /*left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;*/   
+}
+
+.tab__title { 
+    font-family: {{ textFontAccent }};
+    font-size: 2.25em /*36px*/;
+    margin-bottom: 1.375em;
+    text-transform: uppercase;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .tab__title { 
+            font-size: 3em /*48px*/;
+        }    
+    }

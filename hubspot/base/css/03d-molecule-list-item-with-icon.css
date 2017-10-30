@@ -1,0 +1,80 @@
+/*========================================================================================
+
+03d.00      LAYOUT FRAMEWORK        MOLECULES        LIST ITEM WITH ICON                   
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+03d.01      LAYOUT FRAMEWORK        MOLECULES       LIST ITEM WITH ICON        STRUCTURE      
+
+-------------------------------------------------------------------------------------*/
+
+.container--item--with-icon { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .container--item--with-icon { 
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("flex-start") }}
+            {{ flexboxJustify("center") }}
+        }
+    }
+
+.item__details { 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .item__details { 
+            padding: 0 1.375em /*22px*/ 0 2.75em /*44px*/;
+            flex: 0 1 auto;
+        }    
+    }
+    
+    
+/*-------------------------------------------------------------------------------------
+
+03d.02      LAYOUT FRAMEWORK        MOLECULES       LIST ITEM WITH ICON        TEXT   
+
+-------------------------------------------------------------------------------------*/
+
+.item--with-icon__title { 
+    color: {{ colorCore5 }};
+    font-family: {{ textFontAccent }};
+    font-size: 1.25em /*20px*/;
+    /*margin-top: 0.7em /*14px*/;*/
+    text-align: center;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .item--with-icon__title { 
+            font-size: 1.375em /*22px*/;    
+            text-align: left;
+        }
+    }
+
+.item--with-icon__subtitle { 
+    line-height: 1.3;
+    margin: 0.5em auto 0;
+    max-width: 20em;
+    text-align: center;
+    width: 90%;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .item--with-icon__subtitle { 
+            font-size: 1.125em /*18px*/;   
+            margin: 0;
+            max-width: none;
+            padding-top: 1.111em /*20px*/;
+            text-align: left;
+            width: 100%;
+        }
+    }

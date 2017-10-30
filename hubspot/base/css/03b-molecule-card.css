@@ -1,0 +1,276 @@
+/*========================================================================================
+
+03b.00      LAYOUT FRAMEWORK        MOLECULES        CARD      
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+03b.01      LAYOUT FRAMEWORK        MOLECULES       CARD        STRUCTURE      
+
+-------------------------------------------------------------------------------------*/
+
+.list--cards {
+    {{ flexboxJustify("center") }}
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 75em;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }} ) { 
+        .list--cards {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("flex-start") }}
+            {{ flexboxJustify("flex-start") }}
+            flex-wrap: wrap;
+        }    
+    }
+
+.card { 
+    background-color: #fff;
+    {{ boxShadow("0 0 2px 0 rgba(0,0,0,0.12), 0 2px 2px 0 rgba(0,0,0,0.24)") }}    
+    height: 19em /*304px*/;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.8125em;
+    /*max-width: 19em /*304px;*/
+}
+    @media only screen and (min-width: {{ breakpointPhablet }} ) { 
+        .card { 
+            flex: 0 1 46%;
+            margin-left: 2%;
+            margin-right: 2%;
+            /*max-width: 21.5em /*344px;*/
+        } 
+    }
+    @media only screen and (min-width: {{ breakpointTablet }} ) { 
+        .card { 
+            flex: 0 1 30%;
+            margin-left: 1.5%;
+            margin-right: 1.5%;
+        }    
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }} ) { 
+        .card { 
+            margin-top: 3.625em;
+        }    
+    }
+
+.card__content { 
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    {{ transition("box-shadow 0.2s ease-in-out") }}
+    width: 100%;
+}
+.card__content:hover, 
+.card__content:active, 
+.card__content:focus { 
+    {{ boxShadow("0 0 0 0.188em {{colorCore5}} inset") }}
+}
+
+.container--card { 
+    {{ alignVertically("50%") }}    
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+03b.02      LAYOUT FRAMEWORK        MOLECULES       CARD        TEXT
+
+-------------------------------------------------------------------------------------*/
+
+.card__title { 
+    font-family: {{ textFontAccent }};
+    font-size: 1.25em /*20px*/;
+    font-weight: 500;
+    line-height: 1.2;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .card__title { 
+            font-size: 1.5em /*24px*/;
+        }    
+    }
+
+.card__cta { 
+    display: block;   
+    font-size: 1em;
+    margin-top: 1em;
+    {{ transition("0.2s ease-in-out") }}
+}
+.card__content:hover .card__cta, 
+.card__content:active .card__cta, 
+.card__content:focus .card__cta { 
+    color: {{ colorAccent4 }};
+    font-weight: 700;
+}
+    /*@media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .card__cta { 
+        }   
+    }*/   
+
+.card__cta .icon { 
+    display: inline-block;
+    fill: {{ colorCore5 }};
+    height: 0.509em /*8.14px*/;
+    margin-left: 0.15em;
+    {{ transition("fill 0.2s ease-in-out") }}
+    width: 0.3em /*4.8px*/;
+    vertical-align: middle;
+}
+.card__content:hover .card__cta .icon, 
+.card__content:active .card__cta .icon, 
+.card__content:focus .card__cta .icon { 
+    fill: {{ colorAccent4 }} 
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+03b.03      LAYOUT FRAMEWORK        MOLECULES       CARD        VERSION A: WITH ICON
+
+-------------------------------------------------------------------------------------*/
+ 
+.card--with-icon .card__content { 
+    padding: 0 10%;
+} 
+    
+.card--with-icon .card__title { 
+    text-transform: uppercase;
+}
+
+.card__imagery { 
+    border-bottom: 1px solid #979797;
+    /*height: 6.875em /*110px;*/
+    margin: 0 auto 1.25em;
+    padding-bottom: 1em;
+    position: relative;
+    width: 8.625em /*138px*/;
+}
+
+.card__imagery__icon { 
+    /*bottom: 1em;
+    display: block;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;*/
+    margin: 0 auto;
+}
+
+/* Clipboard */
+.card__imagery .icon--clipboard-with-police-shield { 
+    height: 5.688em /*91px*/;
+    width: 3.75em /*60px*/;  
+}
+
+/* Cloud */
+.card__imagery .icon--cloud-with-download-arrow { 
+    height: 3.438em /*55px*/;
+    width: 3.75em /*60px*/;  
+}
+
+/* File */
+.card__imagery .icon--file-with-magnifying-glass { 
+    height: 4.75em /*76px*/;
+    width: 4.688em /*75px*/;
+}
+
+/* File folder with unlocked lock*/
+.card__imagery .icon--file-folder-with-open-lock { 
+    height: 4.188em /*67px*/;
+    width: 4.688em /*75px*/;
+}
+
+/* Financial folder */
+.card__imagery .icon--folder-with-dollar-symbol { 
+    height: 4.063em /*65px*/;
+    width: 4.875em /*78px*/;
+}
+
+/* Location pin */
+.card__imagery .icon--location-marker { 
+    height: 5.125em /*82px*/;
+    width: 3.75em /*60px*/;  
+}
+
+/* Magnifying glass & id badge */
+.card__imagery .icon--magnifying-glass-inspecting-id-badge { 
+    height: 4.375em /*70px*/;
+    width: 5.188em /*83px*/; 
+}
+
+/* Moneybag */
+.card__imagery .icon--moneybag-and-coin { 
+    height: 4.438em /*71px*/;
+    width: 4.688em /*75px*/;
+}
+
+/* Rolled up paper (will or deed) */
+.card__imagery .icon--rolled-up-paper-with-dollar-symbol { 
+    height: 5.625em /*90px*/;
+    width: 6.125em /*98px*/;
+}
+
+/* Shield */
+.card__imagery .icon--shield-with-trio-of-people-inside { 
+    height: 4.875em /*78px*/;
+    width: 3.75em /*60px*/;
+}
+
+/* Social network */
+.card__imagery .icon--social-network-symbol { 
+    height: 4.688em /*75px*/;
+    width: 3.625em /*58px*/;  
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+03b.04      LAYOUT FRAMEWORK        MOLECULES       CARD        VERSION B: SIMPLE TEXT
+
+-------------------------------------------------------------------------------------*/
+
+.card--simple .card__content { 
+    padding: 0 5%;
+} 
+
+.card--simple .container--card { 
+    height: 100%;
+    width: 100%;
+}
+    
+.card--simple .card__title { 
+    bottom: 0;
+    left: 0;
+    padding-bottom: 1em;
+    position: absolute;
+    right: 0;
+}
+
+.card--simple .card__details { 
+    {{ alignVertically("50%") }}    
+}
+
+.card--simple .card__blurb { 
+    font-family: {{ textFontAccent }};
+    font-size: 1.125em /*18px*/;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .card--simple .card__blurb { 
+            font-size: 1.375em /*22px*/;
+        }    
+    }

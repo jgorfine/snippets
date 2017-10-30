@@ -1,0 +1,927 @@
+/*========================================================================================
+
+04b.00      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        { ALPHABETICAL }        
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.01      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        BASE
+
+-------------------------------------------------------------------------------------*/
+
+.section { 
+    padding: 2.5em 0;
+    position: relative;
+    text-align: center;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section { 
+            padding: 5em 0;
+        }
+    }
+
+.section--slanted:before, 
+.section--slanted:after { 
+    border-bottom: 0px solid transparent;
+	border-left: 102vw solid;
+	border-top-color: transparent;    
+	border-top-style: solid;
+	border-top-width: {{ slantSizeMobile }};
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    top: -{{ slantOffsetMobile }};
+    width: 0;
+}
+    @media only screen and (min-width: {{ breakpointTablet }} ) { 
+        .section--slanted:before, 
+        .section--slanted:after { 
+        	border-top-width: {{ slantSizeDesktop }};    
+            top: -{{ slantOffsetDesktop }};
+        }    
+    }
+
+.section--slanted:before { 
+    color: var(--this-section-background);
+}
+
+.section--slanted:after { 
+    color: var(--last-section-background);
+    display: none;
+    {{ transform("scale(-1, -1)") }}
+}
+
+.section--slanted--mirrored:before {
+	{{ transform("scaleX(-1)") }}
+}
+
+.section--slanted--mirrored:after { 
+    {{ transform("scale(1, -1)") }}
+}
+
+.section .section__title { 
+    font-family: {{ textFontAccent }};
+    font-size: 2.25em /*36px*/;
+    font-weight: 400;
+    text-align: center; 
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section .section__title { 
+            font-size: 3em /*48px*/;
+        }
+    }
+
+.section .section__subtitle { 
+    font-size: 1em /*16px*/;
+    line-height: 1.3;
+    margin-bottom: 2.5em /*50px*/;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section .section__subtitle { 
+            font-size: 1.125em /*18px*/;
+        }    
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section .section__subtitle { 
+            font-size: 1.25em /*20px*/;
+        }
+    }
+
+.section .section__title + .section__subtitle { 
+    margin-top: 1.458em;    
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.02      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        CASE CATEGORIES
+
+-------------------------------------------------------------------------------------*/
+
+.section--case-categories .section__title, 
+.section--case-categories .section__subtitle { 
+    color: {{ colorCore1 }};
+    /*margin-bottom: 0.563em /*27px;*/
+}
+
+.section--case-categories .button--cta { 
+    margin-top: 3.5em /*56px*/;    
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.03      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        CASE TYPES
+
+-------------------------------------------------------------------------------------*/
+
+.section--case-types .section__title, 
+.section--case-types .section__subtitle { 
+    color: {{ colorCore1 }};
+}
+
+.section--case-types .section__subtitle { 
+    margin-bottom: 0;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.04      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        CTA ("GET STARTED")
+
+-------------------------------------------------------------------------------------*/
+
+.section--cta { 
+    background-color: {{ colorCore7 }};
+    color: #fff;
+}
+
+.section--cta h4, 
+.section--cta .button--cta { 
+    font-size: 1.125em /*18px*/;  
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--cta h4, 
+        .section--cta .button--cta {
+            font-size: 1.25em /*20px*/;
+        }    
+    }
+
+.section--cta h4 {
+    line-height: 1.25;
+    margin: 1em /*24px*/ auto 1.917em /*46px*/; 
+    max-width: 40.25em;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.05      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        FAQs
+
+-------------------------------------------------------------------------------------*/
+
+.section--faqs { 
+    padding-top: 0;    
+}
+
+.section--faqs .tabs__nav { 
+}
+    /*450px*/
+    @media only screen and (min-width: 28.125em) {
+        .section--faqs .tabs__nav { 
+            {{ flexboxJustify("center") }}
+        }
+        .section--faqs .tabs__nav__anchor { 
+            margin: 0 2.25%;
+        }
+    }
+
+.faqs__tab__title { 
+    font-family: {{ textFontAccent }};
+    font-size: 2.25em /*36px*/;
+    margin-bottom: 1.375em /*66px, desktop*/;
+    text-transform: uppercase;   
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .faqs__tab__title { 
+            font-size: 3em /*48px*/;
+        }    
+    }
+
+.faq__question { 
+    font-size: 1.125em;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1em;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .faq__question { 
+            font-size: 1.25em;
+        }
+    }
+
+.faq__answer { 
+    font-size: 1em;
+    line-height: 1.3;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .faq__answer { 
+            font-size: 1.125em;
+        }
+    }
+
+.faq__answer--tldr, 
+.faq__answer--detailed { 
+    padding-right: 5%;    
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .faq__answer--tldr, 
+        .faq__answer--detailed { 
+            padding-right: 10%;    
+        }    
+    }
+
+.faq__answer--detailed { 
+    padding-top: 1em;    
+}
+
+.faq__answer--detailed > * + * { 
+    margin-top: 1em;    
+}
+
+.faq__answer--detailed ol, 
+.faq__answer--detailed ul { 
+    list-style-position: outside;
+    /*margin-left: 1em;*/
+    padding-left: 2em;
+}
+
+.faq__answer--detailed li { 
+    padding-left: 0.5em;    
+}
+
+.faq__answer--detailed li + li { 
+    margin-top: 0.5em;    
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.06      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        FEATURES ("SIMPLE & STRESS-FREE")
+
+-------------------------------------------------------------------------------------*/
+
+.section--features .container--features { 
+}
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .container--features { 
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("center") }}
+        }
+    }
+
+.section--features .section__title { 
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 21em;    
+}
+
+.section--features .section__subtitle { 
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45em;    
+}
+
+.section--features .features__itemized, 
+.section--features .features__image { 
+}
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .features__itemized, 
+        .section--features .features__image { 
+            flex: 0 1 50%; 
+        }
+    }
+
+.section--features .features__image { 
+    display: none;
+    margin-top: 3.75em /*60px*/;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--features .features__image { 
+            margin-top: 0;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .features__image { 
+            display: block;
+            {{ flexboxOrder("1") }}  
+        }
+    }
+
+.section--features .image--with-caption { 
+    margin: 0 auto;
+    max-width: 46em;    
+}
+
+.section--features .features__itemized { 
+}
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .features__itemized { 
+            max-width: none;
+            padding: 0 4.75em /*76px*/;
+            {{ flexboxOrder("2") }}    
+        }
+    }
+
+.section--features .list--features { 
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--features .list--features { 
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("flex-start") }}
+            {{ flexboxJustify("space-around") }}
+            flex-wrap: wrap;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .list--features { 
+            display: block;
+        }
+    }
+
+.section--features .features__item { 
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--features .features__item:not(:nth-last-child(2)):not(:last-child) { 
+            margin-bottom: 3.75em /*60px*/;   
+        }
+    }
+    @media only screen and (min-width: {{ breakpointTablet}}) { 
+        .section--features .features__item { 
+            flex: 0 1 50%;
+            margin-bottom: 0;
+            padding-left: 1.375em /*22px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .features__item { 
+            flex: 0 0 100%; 
+            padding-left: 0;
+        }
+        .section--features .features__item:not(:nth-last-child(2)):not(:last-child) { 
+            margin-bottom: 0;   
+        }
+    }
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+        .section--features .features__item:not(:nth-last-child(2)):not(:last-child) { 
+            margin-bottom: 0;   
+        } 
+    }
+
+.section--features .features__item + .features__item { 
+    margin-top: 3.75em /*60px*/;
+    
+}  
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--features .features__item + .features__item { 
+            margin-top: 0;    
+        }
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--features .features__item + .features__item { 
+            margin-top: 3.75em /*60px*/;    
+        }
+    }
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+        .section--features .features__item + .features__item { 
+            margin-top: 3.75em /*60px*/;    
+        }  
+    }
+    
+.section--features .features__item__picture { 
+    margin: 0 auto 1em;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--features .features__item__picture { 
+            height: 5.063em /*81px*/;
+            width: 5em /*80px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--features .features__item__picture { 
+            flex: 0 0 5em /*80px*/;
+            margin: 0;
+        }
+    }
+    
+.section--features .features__item img { 
+    font-size: 0.75em;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--features .features__item img { 
+            bottom: 0;
+            display: block;    
+            font-size: 1em;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: auto;
+        }    
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--features .features__item img { 
+            bottom: auto;
+            left: auto;
+            top: 0;
+        }    
+    }
+
+.section--features .features__item--1 img { 
+    height: 5.063em /*81px*/;
+    width: 5em /*80px*/;
+}
+
+.section--features .features__item--2 img { 
+    height: 5.063em /*81px*/;
+    width: 5em /*80px*/;
+}
+
+.section--features .features__item--3 img { 
+    height: 3.25em /*52px*/;
+    width: 5em /*80px*/;
+}
+
+.section--features .features__item--4 img { 
+    height: 4.188em /*67px*/;
+    width: 4.5em /*72px*/;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.07      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        PRICING
+
+-------------------------------------------------------------------------------------*/
+
+.section.section--pricing { 
+    padding: 2.5em 0;    
+}
+
+.section--pricing .container--gutters { 
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    {{ flexboxAlign("center") }}
+    {{ flexboxJustify("center") }}
+    max-width: none;
+    width: 100%
+}
+
+.section--pricing .container--gutters > * { 
+    font-size: 1em;
+}
+    @media only screen and (min-width: {{ breakpointPhone }}) { 
+        .section--pricing .container--gutters > * { 
+            font-size: calc( 16px + (24 - 16) * (100vw - 500px) / (1280 - 500) );
+        }   
+    }
+
+.section--pricing .pricing__note { 
+    font-family: {{ textFontAccent }};
+    font-weight: 500;
+    flex: 0 1 auto;
+    margin: 0 1em;
+    text-transform: uppercase;
+}
+    @media only screen and (min-width: {{ breakpointPhone }}) { 
+        .section--pricing .pricing__note { 
+            margin: 0;
+        }  
+    }
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--pricing .pricing__note { 
+            flex: 0 0 auto;
+        }  
+    }
+
+.section--pricing .pricing__separator { 
+    display: none;
+}
+    @media only screen and (min-width: {{ breakpointPhone }}) { 
+        .section--pricing .pricing__separator { 
+            display: block;
+            padding: 0 calc( 16px + (24 - 16) * (100vw - 500px) / (1280 - 500) );
+        }   
+    }
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.07      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        PROCESS ("HIRING A PI")
+
+-------------------------------------------------------------------------------------*/
+
+.section--process .container--gutters { 
+    max-width: 71em;    
+}
+
+.section--process .list--steps { 
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--process .list--steps { 
+            {{ columnCount("2") }}
+            {{ columnGap("2.875em") }} /*46px*/
+        }  
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--process .list--steps { 
+            {{ columnGap("5.75em") }} /*92px*/
+        }  
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--process .list--steps { 
+            {{ columnGap("11.5em") }} /*184px*/
+        }  
+    }
+    
+.process__step { 
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .process__step { 
+            -webkit-column-break-inside: avoid;
+            column-break-inside: avoid;    
+            display: inline-block;
+            min-height: 13.500em /*216px*/;
+            width: 100%;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .process__step { 
+            min-height: 14.688em /*235px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .process__step { 
+            min-height: 0;
+        }
+    }
+
+.process__step:nth-child(odd) { 
+    margin-bottom: 0;
+    margin-top: 3em /*48px*/;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .process__step:nth-child(odd) { 
+            margin-top: 0;
+        } 
+    }
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .process__step:nth-child(odd) { 
+            margin-bottom: 3em /*48px*/;  
+        } 
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .process__step:nth-child(odd) { 
+            margin-bottom: 6em /*96px*/;   
+        } 
+    }
+    
+.process__step:nth-child(even) { 
+    margin-top: 3em /*48px*/;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .process__step:nth-child(even) { 
+            margin-top: 0;
+        } 
+    }
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.08      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        PRODUCT DEMO ("HOW IT WORKS")
+
+-------------------------------------------------------------------------------------*/
+
+.section--how-it-works { 
+    background-color: #f7f8f9;    
+}
+
+.section--how-it-works.section--mirrored { 
+    background-color: #fff;    
+}
+
+.section--how-it-works .container--gutters { 
+    max-width: 70em /*1120px*/;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--how-it-works .container--gutters { 
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("center") }}
+            {{ flexboxJustify("center") }}
+            
+        }    
+    }
+    
+.section--how-it-works .how-it-works__details { 
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--how-it-works .how-it-works__details { 
+            max-width: none;
+            text-align: left;
+        }  
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--how-it-works .how-it-works__details { 
+            margin-left: 15%;
+            margin-right: 0;
+            max-width: none;
+            text-align: left;
+        }  
+        .section--how-it-works.section--mirrored .how-it-works__details { 
+            {{ flexboxOrder("1") }}
+            margin-left: 0;
+            margin-right: 15%;
+        }  
+    }
+
+.section--how-it-works .how-it-works__details__title { 
+    display: inline-block;
+}
+
+.section--how-it-works .how-it-works__details__info { 
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--how-it-works .how-it-works__details__info { 
+            padding: 0 3%;
+        }    
+    }
+    
+.section--how-it-works .how-it-works__details__info li { 
+    margin-top: 2em;
+}
+
+.section--how-it-works .how-it-works__details__info li * + * {
+    margin-top: 0.75em;
+}
+
+.section--how-it-works h4 { 
+    font-family: {{ textFontAccent }};
+    font-size: 1.125em /*18px*/;
+    line-height: 1.2;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--how-it-works h4  { 
+            font-size: 1.25em /*20px*/;
+        }
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--how-it-works h4  { 
+            font-size: 1.5em /*24px*/;
+        }
+    }
+
+.section--how-it-works p { 
+    font-size: 1em /*16px*/;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--how-it-works p  { 
+            font-size: 1.125em /*18px*/;
+        }
+    }
+
+.section--how-it-works .how-it-works__screenshot { 
+    display: none;
+}
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--how-it-works .how-it-works__screenshot { 
+            display: block;
+        }    
+        .section--how-it-works.section--mirrored .how-it-works__screenshot { 
+            {{ flexboxOrder("2") }}
+        }
+    }
+
+.section--how-it-works .container--how-it-works__screenshot { 
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 19.4375em /*161px*/;
+    width: 100%;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--how-it-works .container--how-it-works__screenshot { 
+            height: 38.875em /*622px*/;
+            width: 19.875em /*318px*/;
+        }    
+    }
+    
+.section--how-it-works .how-it-works__screenshot img {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.09      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        PUBLICITY ("AS FEATURED IN")
+
+-------------------------------------------------------------------------------------*/
+
+.section.section--publicity { 
+    padding: 1.25em /*20px*/ 0 3.750em /*60px*/;
+}
+
+.section--publicity .container--gutters { 
+    width: 92%;    
+}
+    @media only screen and (min-width: {{ breakpointPhablet }} ) { 
+        .section--publicity .container--gutters { 
+            max-width: none;
+            width: 100%;    
+        }
+    }
+
+.section--publicity__subtitle { 
+    font-size: 1.5em /*24px*/;    
+}
+    
+.list--publicity {
+    font-size: 0.8em;
+    text-align: center;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }} ) { 
+        .list--publicity {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("center") }}
+            {{ flexboxJustify("center") }}
+            flex-wrap: wrap;
+            font-size: 1em;
+        }    
+    }
+
+.publicity__outlet { 
+    margin: 2.5em /*40px*/ auto 0;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }} ) { 
+        .publicity__outlet { 
+            margin: 2.5em /*40px*/ 1.875em /*30px*/ 0;    
+        }    
+    }
+
+.publicity__outlet--cnn { 
+    height: 3.125em /*50px*/;
+    width: 6.5em /*104px*/;
+}
+
+.publicity__outlet--wired {
+    height: 2.063em /*33px*/;
+    width: 10.125em /*162px*/;
+}
+
+.publicity__outlet--abc { 
+    height: 5.313em /*85px*/;
+    width: 5.313em /*85px*/;
+}
+
+.publicity__outlet--fox-news {
+    height: 2.063em /*33px*/;
+    width: 12.063em /*193px*/;
+}
+
+.publicity__outlet--the-washington-post { 
+    height: 2.313em /*37px*/;
+    width: 15em /*240px*/;
+}
+
+.publicity__outlet--huffpost { 
+    height: 1.5em /*24px*/;
+    width: 12.563em /*201px*/;
+}
+
+.publicity__outlet img { 
+    display: block; 
+    height: auto;
+    width: 100%;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.10      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        REVIEWS
+
+-------------------------------------------------------------------------------------*/
+
+.section--reviews .section__subtitle { 
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45em;
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.11      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        SERVICES ("WHAT WE DO")
+
+-------------------------------------------------------------------------------------*/
+
+.section--services .section__title { 
+    color: {{ colorCore1 }};
+    /*margin-bottom: 0.563em /*27px;*/
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+04b.12      LAYOUT FRAMEWORK        ORGANISMS        SECTIONS        SERVICES LISTINGS
+
+-------------------------------------------------------------------------------------*/
+
+.section--services-listings .container--gutters { 
+    max-width: 72em;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--services-listings .container--gutters { 
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            {{ flexboxAlign("flex-start") }}
+            {{ flexboxJustify("flex-start") }}
+            flex-wrap: wrap;    
+        }    
+    }
+    
+.section--services-listings .services-listings__group { 
+    text-align: center;    
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--services-listings .services-listings__group { 
+            flex: 0 1 50%;
+            margin-bottom: 3.8125em /*61px*/;
+            padding: 0 2.5%;
+            text-align: left;    
+        }    
+    }
+    @media only screen and (min-width: {{ breakpointDesktop }}) { 
+        .section--services-listings .services-listings__group { 
+            flex: 0 1 33%;
+            margin-bottom: 7.625em /*122px*/;
+        }    
+    }
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+        .section--services-listings .services-listings__group { 
+            flex: 0 1 28%;
+        } 
+    }
+
+
+.section--services-listings .services-listings__group + .services-listings__group { 
+    margin-top: 2.5em;
+}
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--services-listings .services-listings__group + .services-listings__group { 
+            margin-top: 0
+        }    
+    }
+
+.section--services-listings .services-listings__title { 
+    font-family: {{ textFontAccent }};
+    font-size: 1.25em /*20px*/;
+    font-weight: 700;
+    line-height: 1.2;
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .section--services-listings .services-listings__title { 
+            font-size: 1.5em /*24px*/;
+        }
+    }
+
+.section--services-listings .services-listings__group li { 
+    font-size: 1em;
+    margin-top: 1em;
+}    
+    @media only screen and (min-width: {{ breakpointPhablet }}) { 
+        .section--services-listings .services-listings__group li { 
+            font-size: 1.125em;
+        }
+    }
+
+.section--services-listings .link--content { 
+    border-bottom-color: transparent;    
+    cursor: pointer;
+    display: inline;
+    line-height: 1.2;
+}

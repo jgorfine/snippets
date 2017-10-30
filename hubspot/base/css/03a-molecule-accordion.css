@@ -1,0 +1,106 @@
+/*========================================================================================
+
+03a.00      LAYOUT FRAMEWORK        MOLECULES        ACCORDION              
+
+========================================================================================*/
+
+{% import "custom/page/base/01a-macros.css" %}
+{% import "custom/page/base/01b-colors.css" %}
+{% import "custom/page/base/01c-breakpoints.css" %}
+{% import "custom/page/base/01d-typography.css" %}
+{% import "custom/page/base/02a-constants.css" %}
+
+
+/*-------------------------------------------------------------------------------------
+
+03a.01      LAYOUT FRAMEWORK        MOLECULES       ACCORDION        STRUCTURE      
+
+-------------------------------------------------------------------------------------*/
+
+.accordion { 
+    border-color: #979797;
+    border-top-width: 0.063em /*1px*/;
+    border-style: solid;
+    padding: 1.25em 0 /*20px 0*/;
+    position: relative;
+    text-align: left;
+}
+.accordion:last-child { 
+    border-bottom-width: 0.063em /*1px*/;    
+}
+    @media only screen and (min-width: {{ breakpointTablet }}) { 
+        .accordion { 
+            padding: 2.625em 0 /*42px 0*/; 
+        }
+    }
+    
+.accordion * { 
+    outline: none;    
+}
+/* This is a terrible practice, but I'm doing it anyway, for now, until we have a better solution */
+
+
+/*-------------------------------------------------------------------------------------
+
+03a.02      LAYOUT FRAMEWORK        MOLECULES       ACCORDION        TOGGLE   
+
+-------------------------------------------------------------------------------------*/
+
+.accordion__toggle { 
+    cursor: default;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+}
+
+.accordion__toggle .container--flex {
+    cursor: default;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    {{ flexboxAlign("flex-start") }}
+    {{ flexboxJustify("space-between") }}
+}
+
+.accordion__toggle .accordion__title { 
+    flex: 0 2 auto;
+}
+
+.accordion__toggle__icon { 
+    flex: 0 0 1.5em;
+    display: block;
+    margin: 0 5%;
+    text-align: center;
+}
+
+.accordion__toggle__icon .icon--chevron { 
+    cursor: pointer;
+    display: block;
+    fill: {{ colorAccent4 }};
+    height: 1.5em;
+    margin: auto;
+    width: 0.875em;
+    {{ transform("rotate(90deg)") }}
+    {{ transition("transform 0.8s ease") }}
+}
+.accordion.is-open .accordion__toggle__icon .icon--chevron { 
+    {{ transform("rotate(270deg)") }} 
+}
+
+
+/*-------------------------------------------------------------------------------------
+
+03a.02      LAYOUT FRAMEWORK        MOLECULES       ACCORDION        COLLAPSED AREA (BELLOWS) 
+
+-------------------------------------------------------------------------------------*/
+    
+.accordion__bellows {
+    overflow-y: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 0;
+    {{ transition("max-height 1s ease") }}
+    position: relative;
+}

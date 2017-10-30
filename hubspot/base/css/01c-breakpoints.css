@@ -1,0 +1,17 @@
+/*========================================================================================
+
+01c.00      BASE        BREAKPOINTS
+
+========================================================================================*/
+
+/* DESKTOP: 1280px */
+{% set breakpointDesktop = "80em" %}
+
+/* iPAD, LANDSCAPE: 1000px */
+{% set breakpointTablet = "62.5em" %}
+
+/* iPAD, PORTRAIT: 750px */
+{% set breakpointPhablet = "46.875em" %}
+
+/* iPHONE, PORTRAIT: 500px*/
+{% set breakpointPhone = "31.25em" %}
