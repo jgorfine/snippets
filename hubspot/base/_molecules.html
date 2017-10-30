@@ -1,0 +1,66 @@
+{% import 'custom/page/base/_atoms.html' as atoms %}
+
+{% macro accordion(index, block, modifier, id) %} 
+    <li class="accordion accordion--{{modifier}} {{block}}__accordion {{block}}__accordion--{{index}}" id="accordion--{{id}}" data-section="{%if id%}{{id|title|replace('-',' ')}}{%else%}{{block}}{%endif%}">
+        <div class="container container--accordion">
+            {{caller()}}
+        </div>
+    </li>
+{% endmacro %}
+
+{% macro card(index, block, modifier, link, target, background_image) %}
+    <li class="card{%if modifier%} card--{{modifier}}{%endif%} {{block}}__card {{block}}__card--{{index}}" {%if background_image%}style="background-image:url('{{background_image}}');"{%endif%}>
+        <a href="{{link}}" class="container card__content" target="{{target}}">
+            <div class="container container--card">
+                {{caller()}}
+            </div>
+        </a>
+    </li>
+{% endmacro %}
+
+{% macro image_with_caption(block, modifier, image_src, image_alt, caption) %}
+    <figure class="image--with-caption image--with-caption--{{modifier}} {{block}}__image--with-caption" data-section="{{block}}">
+		<img src="{{image_src}}" alt="{{image_alt}}">
+		<figcaption>{{caption}}</figcaption>
+	</figure>
+{% endmacro %}
+
+{% macro list_item_with_icon(index, block, modifier, title_element, title_text, subtitle_element, subtitle_text, icon_src, icon_alt) %}
+    <li class="item item--with-icon item--{{modifier}} {{block}}__item {{block}}__item--{{index}}" data-section="{{block}}">
+        <div class="container container--item--with-icon">
+            <div class="container item__picture {{block}}__item__picture">
+                <img class="item--with-icon__img {{block}}__item--with-icon__img" src="{{icon_src}}" alt="{{icon_alt}}" aria-hidden="true">
+            </div>
+            <div class="container item__details {{block}}__item__details">
+                <{{title_element}} class="item--with-icon__title {{block}}__item--with-icon__title">{{title_text}}</{{title_element}}>
+                {% if subtitle_element %}
+                    <{{subtitle_element}} class="item--with-icon__subtitle {{block}}__item--with-item__subtitle">{{subtitle_text}}</{{subtitle_element}}
+                {% endif %}    
+            </div>
+        </div>
+    </li>
+{% endmacro %}
+
+{% macro step(index, block, modifier, this_element, title_element, title_text, subtitle_element, subtitle_text) %}
+    <{{this_element}} class="step step--{{modifier}} {{block}}__step {{block}}__step--{{index}}" data-section="{{block}}">
+        <div class="container container--step">
+            <div class="container step__count">
+                {{ atoms.number("{{index}}", "{{block}}", "dropcaps") }}
+            </div>
+            <div class="container step__details">
+                <{{title_element}} class="step__title {{block}}__step__title">{{title_text}}</{{title_element}}>
+                {% if subtitle_element %}
+                    <{{subtitle_element}} class="step__subtitle {{block}}__step__subtitle">{{subtitle_text}}</{{subtitle_element}}
+                {% endif %}    
+            </div>
+        </div>
+    </{{this_element}}>
+{% endmacro %}
+
+{% macro tab(index, block, modifier, background_color_number, text_color_number, classes, hidden) %}
+    <div class="tab{%if hidden == true %} tab--is-inactive{%endif%} tab--{{index}} {{block}}__tab background-color--{{ background_color_number }} color--{{ text_color_number }}{%if classes%} {{classes}}{%endif%}" aria-hidden="{{hidden}}" aria-labelledby="{{block}}__label">
+        <div class="container container--tab">
+            {{caller()}}
+        </div>
+    </div>
+{% endmacro %}

@@ -1,0 +1,10 @@
+{% import 'custom/page/base/_molecules.html' as molecules %}
+
+
+{% macro section(name, background_color_number, text_color_number, classes) %}
+    <div class="section section--{{name}} background-color--{{ background_color_number }} color--{{ text_color_number }} {%if classes%} {{classes}}{%endif%}">
+        <div class="container container--gutters">
+            {{caller()}}
+        </div>
+    </div>
+{% endmacro %}
