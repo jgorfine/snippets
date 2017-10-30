@@ -1,0 +1,45 @@
+{% from 'custom/page/base/_molecules.html' import accordion %}
+{% from 'custom/page/base/_atoms.html' import icon_chevron %}
+
+<!--
+Module Fields:
+1) This accordion is open to start | boolean
+2) ID | text
+3) Question | text
+4) Answer, tl;dr | richtext
+5) Answer, detailed | richtext
+-->
+
+{% if widget.faq_answer_tldr %}
+    {% call accordion("", "tab", "faq", "{{widget.faq_id}}") %}
+        {% if widget.faq_answer_detailed %}
+            <div class="accordion__toggle faq__accordion__toggle">
+                <div class="container container--flex">
+                    <div class="accordion__title faq__accordion__title">
+                        <h4 class="faq__question" data-section="{{ widget.faq_question }}">{{ widget.faq_question }}</h4>
+                    </div>
+                    {% if widget.faq_answer_detailed %}
+                        <button id="{{widget.faq_id}}__label" class="accordion__toggle__icon faq__accordion__toggle__icon" aria-label="{% if widget.faq_accordion_open %}Hide{% else %}Show{% endif %} the full answer" aria-expanded="{{ widget.faq_accordion_open.value }}" aria-controls="{{widget.faq_id}}">
+                            {{ icon_chevron() }}
+                        </button>
+                    {% endif %}
+                </div>
+                <div class="faq__answer faq__answer--tldr">
+                    {{ widget.faq_answer_tldr }}
+                </div>
+            </div>
+            <div class="accordion__bellows faq__accordion__bellows" id="{{widget.faq_id}}" role="region" aria-labelledby="{{widget.faq_id}}__label" aria-hidden="true">
+                <div class="faq__answer faq__answer--detailed">
+                    {{ widget.faq_answer_detailed }}
+                </div>
+            </div>
+        {% else %}
+            <div class="accordion__title faq__accordion__title">
+                <h4 class="faq__question" data-section="{{ widget.faq_question }}">{{ widget.faq_question }}</h4>
+            </div>
+            <div class="faq__answer faq__answer--tldr">
+                {{ widget.faq_answer_tldr }}
+            </div>
+        {% endif %}
+    {% endcall %}
+{% endif %}

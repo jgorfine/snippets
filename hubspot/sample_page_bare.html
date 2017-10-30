@@ -1,0 +1,20 @@
+{% custom_widget "sample_page_bare_head" widget_name="Template Head", label="Meta + Analytics Data" %}
+
+<!-- TEMPLATE STYLES -->
+<!-- ~Framework -->
+<link href="{{ get_public_template_url("custom/page/base/02-layout-framework.css") }}" rel="stylesheet">
+
+
+{% import 'custom/page/base/_template.html' as template %}
+
+{% call template.page_body_opening_tags() %}
+    {% raw_html "sample_page_bare_opening" label="Page-level scripts and/or stylesheets, before closing head tag", overrideable=true, no_wrapper=true %}
+{% endcall %}
+
+{% custom_widget "sample_page_bare_header" widget_name="Header", label="Header", no_wrapper=true %}
+<main role="main" class="sample-page-1">
+</main>
+
+{% call template.page_body_closing_tags() %}
+    {% raw_html "sample_page_bare_closing" label="Page-level scripts and/or stylesheets, before closing body tag", overrideable=true, no_wrapper=true %}
+{% endcall %}

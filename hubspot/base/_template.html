@@ -1,0 +1,81 @@
+{% macro page_head(meta_robots, meta_image_twitter_src, meta_image_twitter_alt, meta_image_og_src, meta_image_og_width, meta_image_og_height, meta_image_og_type, audience, framework) %}
+    <!DOCTYPE><!-- © {{year}}, {{site_settings.company_name}} -->
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" lang="en">
+    <head>
+        <!-- METADATA -->
+        <!-- ~Setup -->
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <meta name="format-detection" content="telephone=no">
+        <!-- ~Bots -->
+        <meta name="robots" content="{{ meta_robots }}">
+        <meta name="googlebot" content="{{ meta_robots }}">
+        <!-- ~Social Share -->
+        <!-- ~-title -->
+        <title>{{page_meta.html_title}}</title>
+        <meta itemprop="name" content="{{page_meta.html_title}}">
+        <!-- ~-description -->
+        <meta name="description" content="{{content.meta_description}}">
+        <meta itemprop="description" content="{{content.meta_description}}">
+        <!-- ~-image -->
+        <meta property="og:image:secure_url" content="{{meta_image_og_src}}">
+        <meta property="og:image:type" content="image/{{meta_image_og_type}}">
+        <meta property="og:image:width" content="{{meta_image_og_width}}">
+        <meta property="og:image:height" content="{{meta_image_og_height}}">
+        <meta property="og:image" content="{{meta_image_og_src}}">
+        <meta name="twitter:image:src" content="{{meta_image_twitter_src}}">
+        <meta name="twitter:image:alt" content="{{meta_image_twitter_alt}}">
+        <meta itemprop="image" content="{{meta_image_og_src}}">
+        <!-- ~-app -->
+        <!--<meta property="twitter:app:name:googleplay" content="">
+        <meta property="twitter:app:id:googleplay" content="">
+        <meta property="twitter:app:url:googleplay" content="">-->
+        <!-- content type -->
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary">
+        <!-- ~-content creator -->
+        <meta property="og:site_name" content="{{site_settings.company_name}}">
+        <meta property="fb:app_id" content="">
+        <meta name="twitter:creator" content="">
+        <meta name="twitter:site" content="">
+        <!-- GOOGLE TAG MANAGER: ESTABLISHING DATA LAYER -->
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                "event": "gtm.js", 
+            });
+        </script>
+        <!-- HUBSPOT's STANDARD HEADER (http://designers.hubspot.com/docs/hubl/hubl-supported-variables#hs_cos_wrapper_widget_2872295003) -->
+        {{standard_header_includes}}
+        <!-- GLOBAL SCRIPTS -->
+        <!-- ~Base JS -->
+        <script src="{{get_public_template_url("custom/page/base/01-global.js")}}"></script>
+        <!-- GLOBAL STYLES -->
+        <!-- ~Reset -->
+        <link href="{{get_public_template_url("custom/page/base/00-reset.css")}}" rel="stylesheet">
+        <!-- ~Base Styles & Helpers -->
+        <link href="{{get_public_template_url("custom/page/base/01-global.css")}}" rel="stylesheet">
+{% endmacro %}
+
+{% macro page_body_opening_tags() %}
+        {{caller()}}
+    </head>
+    <body class="{{builtin_body_classes}}" itemscope itemtype="https://schema.org/WebPage">
+        <meta itemprop="datePublished" content="{{content.publish_date|datetimeformat("%Y-%m-%d")}}">
+        <meta itemprop="dateModified" content="{{content.updated|datetimeformat("%Y-%m-%d")}}">
+        <meta itemprop="lastReviewed" content="{{local_dt|datetimeformat("%Y-%m-%d")}}">
+        <!-- GOOGLE TAG MANAGER: FALLBACK -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        {% custom_widget "template_masthead" widget_name="Global Masthead", label="Masthead", no_wrapper="true" %}
+{% endmacro %}
+
+{% macro page_body_closing_tags() %}
+        {% custom_widget "template_footer" widget_name="Global Footer", label="Footer", no_wrapper="true" %}
+        {{caller()}}
+        <!-- HUBSPOT's STANDARD FOOTER (http://designers.hubspot.com/docs/hubl/hubl-supported-variables#hs_cos_wrapper_widget_2872295003) -->
+        {{standard_footer_includes}}
+    </body>
+    </html>
+{% endmacro %}

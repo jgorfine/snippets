@@ -1,0 +1,104 @@
+{% from 'custom/page/base/_organisms.html' import section %}
+
+
+{% call section("faqs", "white", "1", classes) %}
+    <div class="tabs">
+        <div class="container container--tabs">
+            <ul class="list--reset tabs__nav">
+                <li class="tabs__nav__anchor tabs__nav__anchor--1 is-current" role="presentation">
+                    <a href="#{{ widget_data.faqs_section_faqs_tab_1_title.value|lower|replace(' ','-') }}" id="{{ widget_data.faqs_section_faqs_tab_1_title.value|lower|replace(' ','-') }}__label" class="link--text" aria-selected="true" tabindex="0">{{ widget_data.faqs_section_faqs_tab_1_title.value|title }}</a>
+                </li>
+                <li class="tabs__nav__anchor tabs__nav__anchor--2" role="presentation">
+                    <a href="#{{ widget_data.faqs_section_faqs_tab_2_title.value|lower|replace(' ','-') }}" id="{{ widget_data.faqs_section_faqs_tab_2_title.value|lower|replace(' ','-') }}__label" class="link--text" aria-selected="false">{{ widget_data.faqs_section_faqs_tab_2_title.value|title }}</a>
+                </li>
+                <li class="tabs__nav__anchor tabs__nav__anchor--3" role="presentation">
+                    <a href="#{{ widget_data.faqs_section_faqs_tab_3_title.value|lower|replace(' ','-') }}" id="{{ widget_data.faqs_section_faqs_tab_3_title.value|lower|replace(' ','-') }}__label" class="link--text" aria-selected="false">{{ widget_data.faqs_section_faqs_tab_3_title.value|title }}</a>
+                </li>
+            </ul>
+            <div class="container">
+                {% custom_widget "faqs_section_tab_1" widget_name="FAQs Tab: 1", label="FAQs, Tab 1", no_wrapper=true %}     
+                {% custom_widget "faqs_section_tab_2" widget_name="FAQs Tab: 2", label="FAQs, Tab 2", no_wrapper=true %}  
+                {% custom_widget "faqs_section_tab_3" widget_name="FAQs Tab: 3", label="FAQs, Tab 3", no_wrapper=true %}   
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".faq__answer a").addClass("link--content").addClass("link--content--light");
+    
+        // TABS
+        // adapted from code created by Jeff Smith, via Simply Accessible: http://simplyaccessible.com/article/danger-aria-tabs/ 
+        var tabs = $(".tabs");
+        var tabsList = $(".tabs__nav");
+        $(tabsList).find(".tabs__nav__anchor > a").each(function(a) {
+            var tab = $(this);
+            tab.click(function(e) {
+                var tabPanel;
+                // Prevent default click event
+                e.preventDefault();
+                // Change state of previously selected tabList item
+                $(tabsList).find("> li.is-current").removeClass("is-current").find("> a").attr("aria-selected", "false");
+                // Hide previously selected tabPanel
+                $(tabs).find(".tab:visible").attr("aria-hidden", "true").addClass("tab--is-inactive");
+                // Show newly selected tabPanel
+                tabPanel = $(tabs).find(".tab").eq(tab.parent().index());
+                tabPanel.attr("aria-hidden", "false").removeClass("tab--is-inactive");
+                // Set state of newly selected tab list item
+                tab.attr("aria-selected", "true").parent().addClass("is-current");
+                // Set focus to the first heading in the newly revealed tab content
+                tabPanel.children("h3").attr("tabindex", -1).focus();
+            });
+        });
+        // Set keydown events on tabList item for navigating tabs
+        $(tabsList).delegate("a", "keydown",
+            function(e) {
+                var tab = $(this);
+                switch (e.which) {
+                    case 37: case 38:
+                        if (tab.parent().prev().length!=0) {
+                            tab.parent().prev().find("> a").click();
+                        } else {
+                            $(tabsList).find("li:last > a").click();
+                        }
+                        break;
+                    case 39: case 40:
+                        if (tab.parent().next().length!=0) {
+                            tab.parent().next().find("> a").click();
+                        } else {
+                            $(tabsList).find("li:first > a").click();
+                        }
+                        break;
+                }
+            }
+        );
+        
+        // ACCORDIONS
+        $(".accordion__toggle__icon").each(function() {
+            var toggle = $(this);
+            var accordion = $(toggle).parents(".accordion");
+            toggle.click(function(e) {
+                var bellows, question, answer, expanded;
+                // Prevent default click event
+                e.preventDefault();
+                // Show newly selected accordion bellows
+                bellows = $(toggle).parents(".accordion__toggle").siblings(".accordion__bellows");
+                question = accordion.find(".faq__question");
+                answer = bellows.find(".faq__answer--detailed");
+                expanded = answer.outerHeight();
+                if ( accordion.hasClass("is-open") ) { 
+                    accordion.attr("aria-expanded", "false").removeClass("is-open");
+                    bellows.attr("aria-hidden", "true").removeAttr("style");
+                    toggle.attr("aria-label", "Show the full answer");
+                    question.attr("tabindex", -1).focus();
+                }
+                else { 
+                    question.removeAttr("tabindex");
+                    accordion.attr("aria-expanded", "true").addClass("is-open");
+                    bellows.attr("aria-hidden", "false").css("max-height", expanded);
+                    toggle.attr("aria-label", "Hide the full answer");
+                    answer.attr("tabindex", -1).focus();
+                }
+            });
+        });
+        
+    </script>
+{% endcall %}
