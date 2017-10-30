@@ -1,0 +1,19 @@
+/*-------------------------------------------------------------
+
+BASE        BREAKPOINTS 		(REQUIRES INCLUDE-MEDIA)    
+
+-------------------------------------------------------------*/
+
+@import "include-media/dist/_include-media.scss";
+
+$breakpoint-desktop: 80em; 		//~ 1280px
+$breakpoint-tablet: 62.5em;		//~ 1000px
+$breakpoint-phablet: 46.25em;	//~ 740px
+$breakpoint-phone: 31.25em;		//~ 500px
+
+$breakpoints: ( 
+	phone: $breakpoint-phone, 
+	phablet: $breakpoint-phablet,  
+	tablet: $breakpoint-tablet, 
+	desktop: $breakpoint-desktop
+)
